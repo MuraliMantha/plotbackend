@@ -3,9 +3,9 @@ const router = express.Router();
 const { getAllPlots, createPlot, updatePlot, deletePlot } = require('../controllers/plotController');
 const auth = require('../middleware/auth');
 
-router.get('/', auth, getAllPlots);
-router.post('/', auth, createPlot);
-router.put('/:id', auth, updatePlot);
-router.delete('/:id', auth, deletePlot);
+router.get('/',  getAllPlots);
+router.post('/',  createPlot);
+router.put('/:id',  updatePlot);
+router.delete('/:id',  deletePlot);
 
 module.exports = router;

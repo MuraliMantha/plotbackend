@@ -27,6 +27,6 @@ const plotSchema = new mongoose.Schema({
   }
 }, { timestamps: true, collection: 'polygonmaster' }); // 👈 force collection name
 // ✅ Create GeoJSON 2dsphere index
-plotSchema.index({ geometry: '2dsphere' });
+plotSchema.index({ geometry: '2dsphere'});
 
 module.exports = mongoose.model('Plot', plotSchema);
