@@ -43,29 +43,16 @@ function pixelToGeo(x, y, imageWidth, imageHeight, bounds) {
 
 // Create a plot
 const createPlot = async (req, res) => {
-    try {
+  try {
     const { geometry, ...rest } = req.body;
+    console.log("48", req.body)
 
-    const bounds = {
-      lngMin: 78.0400,
-      lngMax: 78.0412,
-      latMin: 17.4110,
-      latMax: 17.4120
-    };
-
-    const imageWidth = 1000;  // in pixels
-    const imageHeight = 1000;
-
-    // Convert pixel coords to lat/lng
-    const convertedCoordinates = geometry.coordinates[0].map(([x, y]) =>
-      pixelToGeo(x, y, imageWidth, imageHeight, bounds)
-    );
-
+    // ✅ No conversion — use raw coordinates
     const plot = new Plot({
       ...rest,
       geometry: {
-        type: 'Polygon',
-        coordinates: [convertedCoordinates]
+        type: geometry.type || 'Polygon', // optional fallback
+        coordinates: geometry.coordinates
       }
     });
 
